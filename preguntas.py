@@ -16,10 +16,10 @@ def pregunta_01():
     df = pd.read_csv("house-votes-84.csv", sep=",")
 
     # Cree un vector con la variable de respuesta ('party')
-    y = df['party']
+    y = df["party"].values
 
     # Extraiga las variables de entrada
-    X = df.drop('party', axis = 1).values
+    X = df.drop("party", axis=1).values
 
     # Importe el transformador OrdinalEncoder
     from sklearn.preprocessing import OrdinalEncoder
@@ -29,13 +29,12 @@ def pregunta_01():
 
     # Importe KNeighborsClassifier de sklearn.neighbors
     from sklearn.neighbors import KNeighborsClassifier
-    
 
     # Cree un un clasificador k-NN con 6 vecinos
-    knn = KNeighborsClassifier(n_neighbors = 6)
+    knn = KNeighborsClassifier(n_neighbors=5)
 
     # Entrene el clasificador con el conjunto de entrenamiento
-    knn.fit(X, y)
+    knn = knn.fit(X, y)
 
     # Retorne el score del clasificador
     return knn.score(X, y)
@@ -50,10 +49,10 @@ def pregunta_02():
     df = pd.read_csv("house-votes-84.csv", sep=",")
 
     # Cree un vector con la variable de respuesta ('party')
-    y = df['party'].values
+    y = df["party"].values
 
     # Extraiga las variables de entrada
-    X = df.drop('party', axis = 1).values
+    X = df.drop("party", axis=1).values
 
     # Importe el transformador OrdinalEncoder
     from sklearn.preprocessing import OrdinalEncoder
@@ -63,11 +62,9 @@ def pregunta_02():
 
     # Importe KNeighborsClassifier de sklearn.neighbors
     from sklearn.neighbors import KNeighborsClassifier
-    
 
     # Cree un un clasificador k-NN con 6 vecinos
-    knn = KNeighborsClassifier(n_neighbors = 6)
-
+    knn = KNeighborsClassifier(n_neighbors=5)
 
     # Entrene el clasificador con el conjunto de entrenamiento
     knn.fit(X, y)
@@ -79,4 +76,4 @@ def pregunta_02():
     from sklearn.metrics import confusion_matrix
 
     # Retorne la matriz de confusión
-    return confusion_matrix(y_true=y,y_pred=y_pred)
+    return confusion_matrix(y, y_pred)
